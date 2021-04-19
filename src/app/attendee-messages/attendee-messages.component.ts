@@ -10,14 +10,27 @@ export class AttendeeMessagesComponent implements OnInit {
   constructor(public service: Bookmein2APIService) {}
   attendeeID: number;
   allAttendeeMsgs: any;
+  enableErrorMessage: boolean = false;
+  isNoRecords: boolean = false;
   ngOnInit() {}
 
   getAllAttendeeMessages() {
-    this.service
-      .getAllAttendeeMessages(this.attendeeID)
-      .subscribe((response) => {
-        this.allAttendeeMsgs = response;
-        console.log(this.allAttendeeMsgs);
-      });
+    if (!this.attendeeID) {
+      this.enableErrorMessage = true;
+      return false;
+    }
+    if (this.attendeeID) {
+      this.isNoRecords = false;
+      this.enableErrorMessage = false;
+      this.service
+        .getAllAttendeeMessages(this.attendeeID)
+        .subscribe((response) => {
+          this.allAttendeeMsgs = response;
+          console.log(this.allAttendeeMsgs);
+          if (this.allAttendeeMsgs.length == 0) {
+            this.isNoRecords = true;
+          }
+        });
+    }
   }
 }

@@ -4,34 +4,44 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="formGroupExampleInput"> Enter attendee ID </label>
-        <input type="text" class="form-control" id="attendeeID" placeholder="Ex. 14611"
-          (click)="getAllAttendeeMessages()" [(ngModel)]="attendeeID">
+        <input type="text" class="form-control" id="attendeeID" placeholder="Ex. 14783" [(ngModel)]="attendeeID">
       </div>
     </div>
 
     <div class="com-md-4">
-      <button type="button" class="btn btn-primary">Search</button>
+      <button type="button" class="btn btn-primary" (click)="getAllAttendeeMessages()">Search</button>
     </div>
 
-    <!-- <div class="col-md-4">
-      <h4 class="text-center">Popular Sessions Based on Total Registrations</h4>
+    <div class="col-md-12" *ngIf="allAttendeeMsgs">
+      <h4 class="text-center">Message Details of Attendee {{attendeeID}} - {{allAttendeeMsgs[0].first_name}}
+        {{allAttendeeMsgs[0].last_name}}</h4>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Event Id</th>
-            <th scope="col">Total Registrations</th>
-            <th>Event Type</th>
+            <th>Meeting Id</th>
+            <th>Meeting Date</th>
+            <th>Message From</th>
+            <th>Message To</th>
+            <th>Message</th>
+            <th>Date Sent</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor=" ">
-            <td>{{item.event_id}}</td>
-            <td>{{item.total_registrations}}</td>
-            <td>Seminar</td>
+          <tr *ngFor=" let item of allAttendeeMsgs ">
+            <td>{{item.meetingid}}</td>
+            <td>{{item.meeting_date}}</td>
+            <td>{{item.message_from}} - {{item.first_name}} {{item.last_name}}</td>
+            <td>{{item.message_to}}</td>
+            <td>{{item.message}}</td>
+            <td>{{item.date_sent | date}}</td>
           </tr>
         </tbody>
       </table>
-    </div> -->
+    </div>
+
+    <div class="col-md-12" *ngIf="isNoRecords">
+      <h2 class="text-center">No record found</h2>
+    </div>
 
   </div>
 </div>
