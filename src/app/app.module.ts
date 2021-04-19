@@ -12,6 +12,8 @@ import { PieChartComponent } from "./pie-chart/pie-chart.component";
 import { RadarChartComponent } from "./radar-chart/radar-chart.component";
 import { DoughnutChartComponent } from "./doughnut-chart/doughnut-chart.component";
 import { BarChartViewAllComponent } from './bar-chart-view-all/bar-chart-view-all.component';
+import { HeaderComponent } from './header/header.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { BarChartViewAllComponent } from './bar-chart-view-all/bar-chart-view-al
     RadarChartComponent,
     DoughnutChartComponent,
     BarChartViewAllComponent,
+    HeaderComponent,
+    HomepageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule],
   providers: [ThemeService],
