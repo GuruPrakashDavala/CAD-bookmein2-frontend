@@ -14,6 +14,7 @@ import { DoughnutChartComponent } from "./doughnut-chart/doughnut-chart.componen
 import { BarChartViewAllComponent } from './bar-chart-view-all/bar-chart-view-all.component';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     BarChartViewAllComponent,
     HeaderComponent,
     HomepageComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule],
   providers: [ThemeService],
