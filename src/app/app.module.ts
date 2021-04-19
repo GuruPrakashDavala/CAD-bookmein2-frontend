@@ -15,6 +15,8 @@ import { BarChartViewAllComponent } from './bar-chart-view-all/bar-chart-view-al
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
+import { AttendeeMessagesComponent } from './attendee-messages/attendee-messages.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -29,8 +31,9 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     HomepageComponent,
     FooterComponent,
+    AttendeeMessagesComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule, FormsModule],
   providers: [ThemeService],
   bootstrap: [AppComponent],
 })
