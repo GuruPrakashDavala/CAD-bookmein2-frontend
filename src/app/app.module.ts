@@ -11,6 +11,7 @@ import { LineChartComponent } from "./line-chart/line-chart.component";
 import { PieChartComponent } from "./pie-chart/pie-chart.component";
 import { RadarChartComponent } from "./radar-chart/radar-chart.component";
 import { DoughnutChartComponent } from "./doughnut-chart/doughnut-chart.component";
+import { BarChartViewAllComponent } from './bar-chart-view-all/bar-chart-view-all.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DoughnutChartComponent } from "./doughnut-chart/doughnut-chart.componen
     PieChartComponent,
     RadarChartComponent,
     DoughnutChartComponent,
+    BarChartViewAllComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule],
   providers: [ThemeService],

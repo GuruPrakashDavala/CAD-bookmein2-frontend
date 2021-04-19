@@ -8,6 +8,6 @@ export class Bookmein2APIService {
   constructor(public http: HttpClient) {}
 
   getPopularSessions() {
-    return this.http.get("http://localhost:3000/eventregistrations");
+    return this.http.get<[]>("http://localhost:3000/eventregistrations");
   }
 }
