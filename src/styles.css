@@ -12,5 +12,9 @@
 }
 
 .color-primary {
-  color: #fff;
+  color: #fff!important;
+}
+
+.toggler-btn {
+  background-color: #fff;
 }
