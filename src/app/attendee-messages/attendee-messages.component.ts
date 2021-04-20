@@ -24,12 +24,14 @@ export class AttendeeMessagesComponent implements OnInit {
 
   getAllAttendeeMessages() {
     if (!this.attendeeID) {
+      this.enableInvalidFormatErrorMessage = false;
       this.enableErrorMessage = true;
       return false;
     }
 
     if (isNaN(this.attendeeID)) {
       console.log(isNaN(this.attendeeID));
+      this.enableErrorMessage = false;
       this.enableInvalidFormatErrorMessage = true;
       return false;
     }

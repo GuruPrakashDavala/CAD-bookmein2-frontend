@@ -17,6 +17,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
 import { AttendeeMessagesComponent } from './attendee-messages/attendee-messages.component';
 import { FormsModule } from "@angular/forms";
+import { BarChartTimeComponent } from './bar-chart-time/bar-chart-time.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FormsModule } from "@angular/forms";
     HomepageComponent,
     FooterComponent,
     AttendeeMessagesComponent,
+    BarChartTimeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule, FormsModule],
   providers: [ThemeService],
