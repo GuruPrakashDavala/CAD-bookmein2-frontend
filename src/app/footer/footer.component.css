@@ -2,11 +2,12 @@
   text-decoration: underline;
 }
 
-/* .footer {
+.footer {
   position: fixed;
   bottom: 0;
-  width: 100%
-} */
+  width: 100%;
+  padding-top: 2rem;
+}
 
 .py-4 {
   padding-bottom: 1rem !important;

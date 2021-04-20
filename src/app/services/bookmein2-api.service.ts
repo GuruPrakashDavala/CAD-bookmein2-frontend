@@ -11,6 +11,12 @@ export class Bookmein2APIService {
     return this.http.get<[]>("http://localhost:3000/eventregistrations");
   }
 
+  getAttendeeDetails(attendeeID: number) {
+    return this.http.get<[]>(
+      "http://localhost:3000/getattendeedetails/" + attendeeID
+    );
+  }
+
   getAllAttendeeMessages(attendeeID: number) {
     return this.http.get<[]>(
       "http://localhost:3000/getallattendeesmessages/" + attendeeID

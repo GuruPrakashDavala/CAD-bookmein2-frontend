@@ -7,15 +7,33 @@
         <input type="text" class="form-control" id="attendeeID" placeholder="Ex. 14783" [(ngModel)]="attendeeID">
       </div>
       <span class="text-danger" *ngIf="enableErrorMessage">Attendee ID is required</span>
+      <span class="text-danger" *ngIf="isAttendeeUnAvailable">Attendee ID not available</span>
+      <span class="text-danger" *ngIf="enableInvalidFormatErrorMessage"> Attendee ID should be a number </span>
     </div>
 
-    <div class="com-md-4">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="attendeeOption">Select One Option</label>
+        <select class="form-control" id="attendeeOption" [(ngModel)]="attendeeOption">
+          <option value="" [selected]>Select Option</option>
+          <option value="0">Get conversations between attendees</option>
+          <option value="1">Get conversations between attendees and exhibitor</option>
+          <option value="All">ALL</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="com-md-4 btn-top">
       <button type="button" class="btn btn-primary" (click)="getAllAttendeeMessages()">Search</button>
     </div>
 
-    <div class="col-md-12" *ngIf="allAttendeeMsgs">
-      <h4 class="text-center">Message Details of Attendee {{attendeeID}} - {{allAttendeeMsgs[0].first_name}}
-        {{allAttendeeMsgs[0].last_name}}</h4>
+    <div class="col-md-12" *ngIf="allAttendeeMsgs.length > 0">
+      <br>
+      <h4 class="text-center">Message details of attendee {{attendeeDetails[0].id}} - {{attendeeDetails[0].first_name}}
+        {{attendeeDetails[0].last_name}} to other
+        attendees
+      </h4>
+      <br>
       <table class="table">
         <thead>
           <tr>
@@ -29,20 +47,61 @@
         </thead>
         <tbody>
           <tr *ngFor=" let item of allAttendeeMsgs ">
-            <td>{{item.meetingid}}</td>
+            <td class=".w-30">{{item.meetingid}}</td>
             <td>{{item.meeting_date}}</td>
             <td>{{item.message_from}} - {{item.first_name}} {{item.last_name}}</td>
-            <td>{{item.message_to}}</td>
+            <td class=".w-30">{{item.message_to}}</td>
             <td>{{item.message}}</td>
-            <td>{{item.date_sent | date}}</td>
+            <td class=".w-30">{{item.date_sent | date}}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="col-md-12" *ngIf="isNoRecords">
-      <h2 class="text-center">No record found</h2>
+    <div class="col-md-12" *ngIf="isNoRecordsAttendee">
+      <h2 class="text-center">No records with attendees found</h2>
     </div>
+
+    <div class="col-md-12" *ngIf="allAttendeeExhibitorMsgs.length > 0">
+      <br>
+      <h4 class="text-center">Message details of attendee {{attendeeDetails[0].id}} - {{attendeeDetails[0].first_name}}
+        {{attendeeDetails[0].last_name}} to exhibitors
+      </h4>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Delegate Id</th>
+            <th>Exhibitor Id</th>
+            <th>Delegate Read</th>
+            <th>Exhibitor Read</th>
+            <th>Message</th>
+            <th>Conference Id</th>
+            <th>Conversation Id</th>
+            <th>Date Start</th>
+            <th>Date Sent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let item of allAttendeeExhibitorMsgs ">
+            <td>{{item.delegateid}}</td>
+            <td>{{item.exhibitor_id}}</td>
+            <td>{{item.delegate_read}}</td>
+            <td>{{item.exhibitor_read}}</td>
+            <td>{{item.message}}</td>
+            <td>{{item.conferenceid}}</td>
+            <td>{{item.conversationid}}</td>
+            <td>{{item.date_start}}</td>
+            <td>{{item.date_sent}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-12" *ngIf="isNoRecordsExhibitor">
+      <h2 class="text-center">No records with exhibitors found</h2>
+    </div>
+
 
   </div>
 </div>
