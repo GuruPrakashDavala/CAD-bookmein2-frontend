@@ -6,6 +6,7 @@
         <label for="formGroupExampleInput"> Enter attendee ID </label>
         <input type="text" class="form-control" id="attendeeID" placeholder="Ex. 14783" [(ngModel)]="attendeeID">
       </div>
+      <span class="text-danger" *ngIf="enableErrorMessage">Attendee ID is required</span>
     </div>
 
     <div class="com-md-4">

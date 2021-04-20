@@ -16,4 +16,11 @@ export class Bookmein2APIService {
       "http://localhost:3000/getallattendeesmessages/" + attendeeID
     );
   }
+
+  getAllConversationBetweenAttendeeAndExhibitors(attendeeID: number) {
+    return this.http.get<[]>(
+      "http://localhost:3000/getallexhibitorsanddelegatesconversation/" +
+        attendeeID
+    );
+  }
 }

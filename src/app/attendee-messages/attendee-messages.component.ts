@@ -25,11 +25,24 @@ export class AttendeeMessagesComponent implements OnInit {
       this.service
         .getAllAttendeeMessages(this.attendeeID)
         .subscribe((response) => {
-          this.allAttendeeMsgs = response;
-          console.log(this.allAttendeeMsgs);
-          if (this.allAttendeeMsgs.length == 0) {
+          if (response.length == 0) {
             this.isNoRecords = true;
+            return false;
+          } else {
+            this.allAttendeeMsgs = response;
           }
+        });
+
+      this.service
+        .getAllConversationBetweenAttendeeAndExhibitors(this.attendeeID)
+        .subscribe((response) => {
+          // if (response.length == 0) {
+          //   this.isNoRecords = true;
+          //   return false;
+          // } else {
+          //   this.allAttendeeMsgs = response;
+          // }
+          console.log(response);
         });
     }
   }
