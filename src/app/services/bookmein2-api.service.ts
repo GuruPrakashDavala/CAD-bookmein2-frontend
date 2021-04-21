@@ -51,4 +51,13 @@ export class Bookmein2APIService {
       "http://localhost:3000/totalattended"
     );
   }
+
+  //Total Attendees Grouped By Event ID
+  getTotalAttendeesByEventID() {
+    return this.http.get<[]>("http://localhost:3000/attendeesgroupedbyeventid");
+  }
+
+  getStandsVisitedAndDuration() {
+    return this.http.get<[{eventid:number, totaltime:number}]>("http://localhost:3000/standsvisitedandduration");
+  }
 }

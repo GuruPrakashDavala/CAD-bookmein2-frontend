@@ -19,6 +19,8 @@ import { AttendeeMessagesComponent } from './attendee-messages/attendee-messages
 import { FormsModule } from "@angular/forms";
 import { BarChartTimeComponent } from './bar-chart-time/bar-chart-time.component';
 import { BarChartAllTimeComponent } from './bar-chart-all-time/bar-chart-all-time.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { EventAttendeesCountComponent } from './event-attendees-count/event-attendees-count.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { BarChartAllTimeComponent } from './bar-chart-all-time/bar-chart-all-tim
     AttendeeMessagesComponent,
     BarChartTimeComponent,
     BarChartAllTimeComponent,
+    EventDetailsComponent,
+    EventAttendeesCountComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule, FormsModule],
   providers: [ThemeService],
