@@ -36,6 +36,7 @@ export class AttendeeMessagesComponent implements OnInit {
   isNoRecordsAttendee: boolean = false;
   isNoRecordsExhibitor: boolean = false;
   isAttendeeUnAvailable: boolean = false;
+  isNoEventsFound: boolean = false;
   optionNotSelected: boolean = false;
   attendeeOption: string = "";
 
@@ -66,14 +67,18 @@ export class AttendeeMessagesComponent implements OnInit {
       this.isAttendeeUnAvailable = false;
       this.isNoRecordsAttendee = false;
       this.isNoRecordsExhibitor = false;
+      this.isNoEventsFound = false;
       this.enableErrorMessage = false;
       this.enableInvalidFormatErrorMessage = false;
       this.optionNotSelected = false;
 
       this.service.getAttendeeDetails(this.attendeeID).subscribe((response) => {
         if (response.length == 0) {
-          console.log(response);
+          //console.log(response);
           this.isAttendeeUnAvailable = true;
+          this.allAttendeeMsgs = [];
+          this.allAttendeeExhibitorMsgs = [];
+          this.attendeeEvents = [];
           return false;
         } else {
           this.attendeeDetails = response;
@@ -126,7 +131,7 @@ export class AttendeeMessagesComponent implements OnInit {
           .geetAllEventsofAttendee(this.attendeeID)
           .subscribe((response) => {
             if (response.length == 0) {
-              // this.isNoRecordsExhibitor = true;
+              this.isNoEventsFound = true;
               return false;
             } else {
               this.attendeeEvents = response;
@@ -138,6 +143,8 @@ export class AttendeeMessagesComponent implements OnInit {
                   i
                 ].totaltimespent;
               }
+              console.log(this.pieChartData);
+              console.log(this.pieChartLabels);
             }
           });
         break;
@@ -176,7 +183,7 @@ export class AttendeeMessagesComponent implements OnInit {
           .geetAllEventsofAttendee(this.attendeeID)
           .subscribe((response) => {
             if (response.length == 0) {
-              // this.isNoRecordsExhibitor = true;
+              this.isNoEventsFound = true;
               return false;
             } else {
               this.attendeeEvents = response;
@@ -188,6 +195,8 @@ export class AttendeeMessagesComponent implements OnInit {
                   i
                 ].totaltimespent;
               }
+              console.log(this.pieChartData);
+              console.log(this.pieChartLabels);
             }
           });
 

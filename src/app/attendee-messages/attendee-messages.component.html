@@ -7,7 +7,7 @@
         <input type="text" class="form-control" id="attendeeID" placeholder="Ex. 14783" [(ngModel)]="attendeeID">
       </div>
       <span class="text-danger" *ngIf="enableErrorMessage">Attendee ID is required</span>
-      <span class="text-danger" *ngIf="isAttendeeUnAvailable">Attendee ID not available</span>
+      <span class="text-danger" *ngIf="isAttendeeUnAvailable">Attendee ID not found</span>
       <span class="text-danger" *ngIf="enableInvalidFormatErrorMessage"> Attendee ID should be a number </span>
     </div>
 
@@ -29,7 +29,7 @@
       <button type="button" class="btn btn-primary" (click)="getAllAttendeeMessages()">Search</button>
     </div>
 
-    <div class="col-md-12" *ngIf="allAttendeeMsgs.length > 0">
+    <div class="col-md-12 bottom-space" *ngIf="allAttendeeMsgs.length > 0">
       <br>
       <h4 class="text-center">Message details of attendee {{attendeeDetails[0].id}} - {{attendeeDetails[0].first_name}}
         {{attendeeDetails[0].last_name}} to other
@@ -60,11 +60,11 @@
       </table>
     </div>
 
-    <div class="col-md-12" *ngIf="isNoRecordsAttendee">
-      <h2 class="text-center">No records with attendees found</h2>
+    <div class="col-md-12 bottom-space" *ngIf="isNoRecordsAttendee">
+      <h2 class="text-center">No message records with attendees found</h2>
     </div>
 
-    <div class="col-md-12" *ngIf="allAttendeeExhibitorMsgs.length > 0">
+    <div class="col-md-12 bottom-space" *ngIf="allAttendeeExhibitorMsgs.length > 0">
       <br>
       <h4 class="text-center">Message details of attendee {{attendeeDetails[0].id}} - {{attendeeDetails[0].first_name}}
         {{attendeeDetails[0].last_name}} to exhibitors
@@ -100,18 +100,20 @@
       </table>
     </div>
 
-    <div class="col-md-12" *ngIf="isNoRecordsExhibitor">
-      <h2 class="text-center">No records with exhibitors found</h2>
+    <div class="col-md-12 bottom-space" *ngIf="isNoRecordsExhibitor">
+      <h2 class="text-center">No message records with exhibitors found</h2>
     </div>
 
-    <div class="col-md-8" *ngIf="attendeeEvents.length > 0">
-      <br>
+    <div class="col-md-12" *ngIf="attendeeEvents.length > 0">
       <h4 class="text-center">Event attended and time spent in mins by attendee {{attendeeDetails[0].id}} -
         {{attendeeDetails[0].first_name}}
-        {{attendeeDetails[0].last_name}} to exhibitors
+        {{attendeeDetails[0].last_name}}
       </h4>
       <h4 class="text-center">Total Time Spent: {{totalTimeSpentByAttendee}} Mins</h4>
       <br>
+    </div>
+
+    <div class="col-md-8 bottom-space" *ngIf="attendeeEvents.length > 0">
       <div class="chart-wrapper">
         <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
           [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
@@ -119,23 +121,26 @@
       </div>
     </div>
 
-    <div class="col-md-4" *ngIf="attendeeEvents.length > 0">
+    <div class="col-md-4 bottom-space" *ngIf="attendeeEvents.length > 0">
       <table class="table">
         <thead>
           <tr>
             <th>Event Id</th>
-            <th>Time Spent(Mins)</th>
+            <th>Time Spent (Mins)</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor=" let item of attendeeEvents ">
-            <td>{{item.attendeeid}}</td>
             <td>{{item.eventid}}</td>
+            <td>{{item.totaltimespent}} Mins</td>
           </tr>
         </tbody>
       </table>
     </div>
 
+    <div class="col-md-12 bottom-space" *ngIf="isNoEventsFound">
+      <h2 class="text-center">No Events Attended</h2>
+    </div>
 
   </div>
 </div>

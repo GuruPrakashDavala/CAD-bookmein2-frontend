@@ -27,7 +27,7 @@ export class BarChartAllTimeComponent implements OnInit {
     this.service.getPopularSessionsByTimeSpent().subscribe((response) => {
       this.popularSessions = response;
       console.log(response);
-      for (let i = 0; i <= response.length; i++) {
+      for (let i = 0; i < response.length; i++) {
         this.barChartData[0].data.push(
           this.popularSessions[i].totaltime / 6 / 60
         );
