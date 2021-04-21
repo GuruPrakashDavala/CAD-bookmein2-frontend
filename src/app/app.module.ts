@@ -18,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AttendeeMessagesComponent } from './attendee-messages/attendee-messages.component';
 import { FormsModule } from "@angular/forms";
 import { BarChartTimeComponent } from './bar-chart-time/bar-chart-time.component';
+import { BarChartAllTimeComponent } from './bar-chart-all-time/bar-chart-all-time.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { BarChartTimeComponent } from './bar-chart-time/bar-chart-time.component
     FooterComponent,
     AttendeeMessagesComponent,
     BarChartTimeComponent,
+    BarChartAllTimeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule, FormsModule],
   providers: [ThemeService],

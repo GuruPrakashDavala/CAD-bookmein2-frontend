@@ -13,7 +13,7 @@ export class PieChartComponent {
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-  public pieChartLabels: Label[] = [['SciFi'], ['Drama'], 'Comedy'];
+  public pieChartLabels: Label[] = ['SciFi', 'Drama', 'Comedy'];
   public pieChartData: SingleDataSet = [30, 50, 20];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;

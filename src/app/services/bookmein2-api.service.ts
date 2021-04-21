@@ -11,6 +11,10 @@ export class Bookmein2APIService {
     return this.http.get<[]>("http://localhost:3000/eventregistrations");
   }
 
+  getPopularSessionsByTimeSpent() {
+    return this.http.get<[]>("http://localhost:3000/geteventsbytotaltimespent");
+  }
+
   getAttendeeDetails(attendeeID: number) {
     return this.http.get<[]>(
       "http://localhost:3000/getattendeedetails/" + attendeeID
@@ -27,6 +31,12 @@ export class Bookmein2APIService {
     return this.http.get<[]>(
       "http://localhost:3000/getallexhibitorsanddelegatesconversation/" +
         attendeeID
+    );
+  }
+
+  geetAllEventsofAttendee(attendeeID: number) {
+    return this.http.get<[]>(
+      "http://localhost:3000/getalleventsattendedbyattendee/" + attendeeID
     );
   }
 }

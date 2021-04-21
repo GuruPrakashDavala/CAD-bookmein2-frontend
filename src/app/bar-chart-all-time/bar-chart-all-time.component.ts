@@ -4,14 +4,13 @@ import { Label } from "ng2-charts";
 import { Bookmein2APIService } from "../services/bookmein2-api.service";
 
 @Component({
-  selector: "app-bar-chart-time",
-  templateUrl: "./bar-chart-time.component.html",
-  styleUrls: ["./bar-chart-time.component.css"],
+  selector: "app-bar-chart-all-time",
+  templateUrl: "./bar-chart-all-time.component.html",
+  styleUrls: ["./bar-chart-all-time.component.css"],
 })
-export class BarChartTimeComponent implements OnInit {
+export class BarChartAllTimeComponent implements OnInit {
   constructor(public service: Bookmein2APIService) {}
-  popularSessions: any;
-  topSessions: number = 4;
+  popularSessions = [];
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -28,9 +27,9 @@ export class BarChartTimeComponent implements OnInit {
     this.service.getPopularSessionsByTimeSpent().subscribe((response) => {
       this.popularSessions = response;
       console.log(response);
-      for (let i = 0; i <= this.topSessions; i++) {
+      for (let i = 0; i <= response.length; i++) {
         this.barChartData[0].data.push(
-          (this.popularSessions[i].totaltime / 6 / 60)
+          this.popularSessions[i].totaltime / 6 / 60
         );
         this.barChartLabels.push(this.popularSessions[i].eventid);
       }

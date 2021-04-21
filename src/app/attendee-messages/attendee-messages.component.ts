@@ -1,5 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Bookmein2APIService } from "../services/bookmein2-api.service";
+import { ChartType, ChartOptions } from "chart.js";
+import {
+  SingleDataSet,
+  Label,
+  monkeyPatchChartJsLegend,
+  monkeyPatchChartJsTooltip,
+} from "ng2-charts";
 
 @Component({
   selector: "app-attendee-messages",
@@ -8,10 +15,22 @@ import { Bookmein2APIService } from "../services/bookmein2-api.service";
 })
 export class AttendeeMessagesComponent implements OnInit {
   constructor(public service: Bookmein2APIService) {}
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
+
+  public pieChartLabels: Label[] = [];
+  public pieChartData: SingleDataSet = [];
+  public pieChartType: ChartType = "pie";
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+
   attendeeID: number;
   allAttendeeMsgs = [];
   allAttendeeExhibitorMsgs = [];
   attendeeDetails = [];
+  attendeeEvents = [];
+  totalTimeSpentByAttendee: number = 0;
   enableErrorMessage: boolean = false;
   enableInvalidFormatErrorMessage: boolean = false;
   isNoRecordsAttendee: boolean = false;
@@ -68,6 +87,8 @@ export class AttendeeMessagesComponent implements OnInit {
     switch (this.attendeeOption) {
       case "0":
         console.log("0");
+        this.allAttendeeExhibitorMsgs = [];
+        this.attendeeEvents = [];
         this.service
           .getAllAttendeeMessages(this.attendeeID)
           .subscribe((response) => {
@@ -82,6 +103,7 @@ export class AttendeeMessagesComponent implements OnInit {
         break;
       case "1":
         this.allAttendeeMsgs = [];
+        this.attendeeEvents = [];
         this.service
           .getAllConversationBetweenAttendeeAndExhibitors(this.attendeeID)
           .subscribe((response) => {
@@ -94,7 +116,38 @@ export class AttendeeMessagesComponent implements OnInit {
             console.log(response);
           });
         break;
+      case "2":
+        this.allAttendeeMsgs = [];
+        this.allAttendeeExhibitorMsgs = [];
+        this.pieChartLabels = [];
+        this.pieChartData = [];
+        this.totalTimeSpentByAttendee = 0;
+        this.service
+          .geetAllEventsofAttendee(this.attendeeID)
+          .subscribe((response) => {
+            if (response.length == 0) {
+              // this.isNoRecordsExhibitor = true;
+              return false;
+            } else {
+              this.attendeeEvents = response;
+              console.log(response);
+              for (let i = 0; i < response.length; i++) {
+                this.pieChartLabels.push(this.attendeeEvents[i].eventid);
+                this.pieChartData.push(this.attendeeEvents[i].totaltimespent);
+                this.totalTimeSpentByAttendee += this.attendeeEvents[
+                  i
+                ].totaltimespent;
+              }
+            }
+          });
+        break;
       case "All":
+        this.allAttendeeMsgs = [];
+        this.allAttendeeExhibitorMsgs = [];
+        this.attendeeEvents = [];
+        this.pieChartLabels = [];
+        this.pieChartData = [];
+        this.totalTimeSpentByAttendee = 0;
         this.service
           .getAllAttendeeMessages(this.attendeeID)
           .subscribe((response) => {
@@ -118,6 +171,26 @@ export class AttendeeMessagesComponent implements OnInit {
             }
             console.log(response);
           });
+
+        this.service
+          .geetAllEventsofAttendee(this.attendeeID)
+          .subscribe((response) => {
+            if (response.length == 0) {
+              // this.isNoRecordsExhibitor = true;
+              return false;
+            } else {
+              this.attendeeEvents = response;
+              console.log(response);
+              for (let i = 0; i < response.length; i++) {
+                this.pieChartLabels.push(this.attendeeEvents[i].eventid);
+                this.pieChartData.push(this.attendeeEvents[i].totaltimespent);
+                this.totalTimeSpentByAttendee += this.attendeeEvents[
+                  i
+                ].totaltimespent;
+              }
+            }
+          });
+
         break;
     }
   }
