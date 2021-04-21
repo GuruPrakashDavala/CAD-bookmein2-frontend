@@ -14,13 +14,16 @@ export class DoughnutChartComponent implements OnInit {
     "Total Attendees Registered",
     "Total Attended",
   ];
-  doughnutChartData: MultiDataSet = [[55, 25]];
+  doughnutChartData: MultiDataSet = [[145, 160]];
   doughnutChartType: ChartType = "doughnut";
   ngOnInit() {
     let totalRegistered = [];
     this.service.getTotalAttendeesRegistered().subscribe((response) => {
-      console.log(response);
-      // this.doughnutChartData.push([response]);
+      totalRegistered.push(response[0].totalregistrations);
+      this.service.getTotalAttendeesAttended().subscribe((response) => {
+        totalRegistered.push(response[0].totalattended);
+        this.doughnutChartData = totalRegistered;
+      });
     });
   }
 }
