@@ -9,12 +9,13 @@ import {
 import { Bookmein2APIService } from "../services/bookmein2-api.service";
 
 @Component({
-  selector: "app-event-attendees-count",
-  templateUrl: "./event-attendees-count.component.html",
-  styleUrls: ["./event-attendees-count.component.css"],
+  selector: "app-all-stands-event-names",
+  templateUrl: "./all-stands-event-names.component.html",
+  styleUrls: ["./all-stands-event-names.component.css"],
 })
-export class EventAttendeesCountComponent implements OnInit {
+export class AllStandsEventNamesComponent implements OnInit {
   constructor(public service: Bookmein2APIService) {}
+  allStands = [];
   standsVisited: number;
   isChartLoaded: boolean = false;
   public pieChartOptions: ChartOptions = {
@@ -26,19 +27,17 @@ export class EventAttendeesCountComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = [];
 
-  totalAttendeesBySession = [];
   ngOnInit() {
     this.isChartLoaded = false;
-    let totalAttendees = [];
-    this.service.getTotalAttendeesByEventID().subscribe((response) => {
-      this.totalAttendeesBySession = response;
-      totalAttendees = response;
+    this.service.getStandsVisitedAndDuration().subscribe((response) => {
+      console.log(response);
+      this.allStands = response;
+      this.standsVisited = response.length;
       for (let i = 0; i < response.length; i++) {
-        this.pieChartLabels.push("" + totalAttendees[i].eventid);
-        this.pieChartData.push(totalAttendees[i].totalAttended);
+        this.pieChartLabels.push("" + response[i].eventid);
+        this.pieChartData.push(response[i].totaltime / 6 / 60);
       }
       this.isChartLoaded = true;
-      console.log(response);
     });
   }
 }

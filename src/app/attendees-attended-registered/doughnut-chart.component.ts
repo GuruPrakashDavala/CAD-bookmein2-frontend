@@ -9,20 +9,24 @@ import { Bookmein2APIService } from "../services/bookmein2-api.service";
   styleUrls: ["./doughnut-chart.component.css"],
 })
 export class DoughnutChartComponent implements OnInit {
+  isChartDataLoaded: boolean = false;
+  totalRegistered = [];
   constructor(public service: Bookmein2APIService) {}
   doughnutChartLabels: Label[] = [
     "Total Attendees Registered",
     "Total Attended",
   ];
-  doughnutChartData: MultiDataSet = [[145, 160]];
+  doughnutChartData: MultiDataSet = [[]];
   doughnutChartType: ChartType = "doughnut";
   ngOnInit() {
-    let totalRegistered = [];
+    this.isChartDataLoaded = false;
+
     this.service.getTotalAttendeesRegistered().subscribe((response) => {
-      totalRegistered.push(response[0].totalregistrations);
+      this.totalRegistered.push(response[0].totalregistrations);
       this.service.getTotalAttendeesAttended().subscribe((response) => {
-        totalRegistered.push(response[0].totalattended);
-        this.doughnutChartData = totalRegistered;
+        this.totalRegistered.push(response[0].totalattended);
+        this.doughnutChartData = this.totalRegistered;
+        this.isChartDataLoaded = true;
       });
     });
   }

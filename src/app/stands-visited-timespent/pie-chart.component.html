@@ -1,0 +1,7 @@
+<h4 class="text-center">Total Stands Visited - {{standsVisited}}</h4>
+<h4 class="text-center" *ngIf="!isChartLoaded">Loading... Please wait</h4>
+<div class="chart-wrapper" *ngIf="isChartLoaded">
+  <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+    [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+  </canvas>
+</div>

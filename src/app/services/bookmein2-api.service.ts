@@ -58,6 +58,8 @@ export class Bookmein2APIService {
   }
 
   getStandsVisitedAndDuration() {
-    return this.http.get<[{eventid:number, totaltime:number}]>("http://localhost:3000/standsvisitedandduration");
+    return this.http.get<[{ eventid: number; totaltime: number }]>(
+      "http://localhost:3000/standsvisitedandduration"
+    );
   }
 }

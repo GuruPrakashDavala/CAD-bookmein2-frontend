@@ -2,41 +2,12 @@
   <h3 class="text-center">BookMeIn2 Dashboard</h3>
   <br>
   <div class="row">
-    <!-- <div class="col-md-4">
-      <div class="form-group">
-        <label for="formGroupExampleInput">Text box one </label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="form-group">
-        <label for="formGroupExampleInput2">Text box two</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Example select</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
-    </div>
-
-    <br> -->
-
     <div class="col-md-6">
       <h4 class="text-center">TOP Five Popular Sessions Based on Total Registrations</h4>
       <app-bar-chart></app-bar-chart>
       <div class="text-center">
         <!-- <a class="custom-a-tag" routerLink="/barchartall">View All Sessions</a> -->
-        <button class="btn btn-dark" routerLink="/barchartall">View All Sessions</button>
+        <button class="btn btn-dark" routerLink="/barchartall">View All Sessions with Event Names</button>
       </div>
     </div>
 
@@ -45,7 +16,7 @@
       <app-bar-chart-time></app-bar-chart-time>
       <div class="text-center">
         <!-- <a class="custom-a-tag" routerLink="/barchartallbytime">View All Sessions</a> -->
-        <button class="btn btn-dark" routerLink="/barchartallbytime">View All Sessions</button>
+        <button class="btn btn-dark" routerLink="/barchartallbytime">View All Sessions with Event Names</button>
       </div>
     </div>
 
@@ -53,22 +24,23 @@
       <h4 class="text-center">Total Attendees Registered and Attended</h4>
       <app-doughnut-chart></app-doughnut-chart>
       <div class="text-center">
-        <button class="btn btn-dark top-15" routerLink="/sessionsandattendees">View All Sessions Count</button>
+        <button class="btn btn-dark top-15" routerLink="/sessionsandattendees">View All Sessions Count with Event
+          Names</button>
       </div>
     </div>
 
     <div class="col-md-6 top-30">
       <h4 class="text-center">Total Stands Visited and Duration (Hrs)</h4>
       <app-pie-chart></app-pie-chart>
+      <div class="text-center">
+        <button class="btn btn-dark top-15" routerLink="/allstands">View All Sessions Count with Event Names</button>
+      </div>
     </div>
 
     <!-- <div class="col-md-4 top-30">
       <h4 class="text-center">Line Chart</h4>
       <app-line-chart></app-line-chart>
     </div> -->
-
-
-
 
     <!-- <div class="col-md-4 top-30">
       <h4 class="text-center">Radar Chart</h4>
@@ -79,5 +51,6 @@
       <h4 class="text-center">Bubble Chart</h4>
       <app-bubble-chart></app-bubble-chart>
     </div> -->
+
   </div>
 </div>

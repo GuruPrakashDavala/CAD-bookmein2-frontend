@@ -16,6 +16,7 @@ import { Bookmein2APIService } from "../services/bookmein2-api.service";
 export class PieChartComponent implements OnInit {
   constructor(public service: Bookmein2APIService) {}
   standsVisited: number;
+  isChartLoaded: boolean = false;
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -26,6 +27,7 @@ export class PieChartComponent implements OnInit {
   public pieChartPlugins = [];
 
   ngOnInit() {
+    this.isChartLoaded = false;
     this.service.getStandsVisitedAndDuration().subscribe((response) => {
       console.log(response);
       this.standsVisited = response.length;
@@ -33,6 +35,7 @@ export class PieChartComponent implements OnInit {
         this.pieChartLabels.push("" + response[i].eventid);
         this.pieChartData.push(response[i].totaltime / 6 / 60);
       }
+      this.isChartLoaded = true;
     });
   }
 }

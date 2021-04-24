@@ -1,29 +1,32 @@
-<h2 class="text-center">Sessions - Attendees Count</h2>
-<h4 class="text-center" *ngIf="totalAttendeesBySession.length == 0">Loading... Please wait</h4>
+<h2 class="text-center">All Stands With Time Spent</h2>
+<h4 class="text-center" *ngIf="allStands.length == 0">Loading... Please wait</h4>
 <br>
 <div class="row">
   <div class="col-md-8" *ngIf="isChartLoaded">
+    <h4 class="text-center">Total Stands Visited - {{standsVisited}}</h4>
+    <h4 class="text-center" *ngIf="!isChartLoaded">Loading... Please wait</h4>
     <div class="chart-wrapper" *ngIf="isChartLoaded">
       <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
         [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
       </canvas>
     </div>
+
   </div>
 
   <div class="col-md-4">
-    <table class="table" *ngIf="totalAttendeesBySession.length > 0">
+    <table class="table" *ngIf="allStands.length > 0">
       <thead>
         <tr>
           <th>Event Id</th>
           <th>Event Name</th>
-          <th>Total Attended</th>
+          <th>Time Spent</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of totalAttendeesBySession">
+        <tr *ngFor="let item of allStands">
           <td>{{item.eventid}}</td>
           <td>{{item.name}}</td>
-          <td>{{item.totalAttended}}</td>
+          <td>{{item.totaltime / 6 / 60}} Hrs</td>
         </tr>
       </tbody>
     </table>
