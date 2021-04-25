@@ -27,6 +27,7 @@ export class DoughnutChartComponent implements OnInit {
         this.totalRegistered.push(response[0].totalattended);
         this.doughnutChartData = this.totalRegistered;
         this.isChartDataLoaded = true;
+        console.log(this.totalRegistered);
       });
     });
   }

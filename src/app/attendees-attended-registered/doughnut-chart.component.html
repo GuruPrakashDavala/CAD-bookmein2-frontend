@@ -1,5 +1,5 @@
 <h4 class="text-center" *ngIf="!isChartDataLoaded">Loading... Please wait</h4>
-<!-- <h2>Registered : {{totalRegistered[0]}} - Attended - {{}}</h2> -->
+<h4 class="text-center" *ngIf="isChartDataLoaded">Registered : {{totalRegistered[0]}} - Attended - {{totalRegistered[1]}}</h4>
 <div class="chart-wrapper" *ngIf="isChartDataLoaded">
   <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
   </canvas>
